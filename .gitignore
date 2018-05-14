@@ -9,6 +9,7 @@
 
 # ignore sensitive files 
 config/initializers/carrierwave.rb
+config/initializers/secrets.json
 
 # Ignore the default SQLite database.
 /db/*.sqlite3

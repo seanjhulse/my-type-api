@@ -18,9 +18,11 @@ gem 'puma', '~> 3.7'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# provides access to AWS services to upload photos
 gem 'carrierwave'
 gem 'fog-aws'
 
+gem 'aws-sdk-rekognition'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

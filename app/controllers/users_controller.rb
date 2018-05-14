@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
     include Response
     include ExceptionHandler
+    
     before_action :set_user, except: [:index, :new, :create]
-
+    
     def index
         @users = User.all
-        json_response(@users)
+        json_response(@users, :ok, :photos)
     end
     def new
         @user = User.new
@@ -17,7 +18,7 @@ class UsersController < ApplicationController
         json_response(@user)
     end
     def show
-        json_response(@user)
+        json_response(@user, :ok, :photos)
     end
     def edit
         json_response(@user)
@@ -36,6 +37,6 @@ class UsersController < ApplicationController
     end
 
     def user_params
-        params.require(:user).permit(:name, :age, :biography)
+        params.require(:user).permit(:name, :age, :biography, :face)
     end
 end

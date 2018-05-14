@@ -1,6 +1,7 @@
 class PhotosController < ApplicationController
     include Response
     include ExceptionHandler
+
     before_action :set_photo, except: [:index, :new, :create]
 
     def index
@@ -11,8 +12,13 @@ class PhotosController < ApplicationController
         @photo = Photo.new
     end
     def create
+        @user = User.find(photo_params[:user_id])
         @photo = Photo.new(photo_params)
         @photo.save
+        analyzer = PhotoAnalyzer.new(@photo.id)
+        face = analyzer.get_face_details()
+        @user.face = face
+        @user.save
         json_response(@photo)
     end
     def show
